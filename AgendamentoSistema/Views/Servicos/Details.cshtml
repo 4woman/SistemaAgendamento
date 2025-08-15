@@ -1,0 +1,42 @@
+@model AgendamentoSistema.Models.Servico
+
+@{ ViewData["Title"] = "Detalhes do Serviço"; }
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h4>Serviço</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt class="col-sm-2">
+            Duração (min)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DuracaoMinutos)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Preco)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Preco)
+        </dd>
+    </dl>
+</div>
+<div>
+    @* Link para iniciar o fluxo de agendamento para este serviço *@
+    <a asp-controller="Agendamento" asp-action="SelecionarHorario" asp-route-servicoId="@Model.Id" class="btn btn-primary">Agendar este Serviço</a> |
+    <a asp-action="Index" asp-controller="Servicos">Voltar para a Lista</a> @* Added controller name for clarity *@
+</div>
+

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<AgendamentoSistema.Models.Profissional>
+
+@{
+    ViewData["Title"] = "Lista de Profissional";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-5">
+<h1>@ViewData["Title"]</h1>
+<p>
+    <a asp-controller="Profissional" asp-action="Cadastrar" class="btn btn-success">Criar Novo Profissional</a>
+</p>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Especialidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HorariosDisponiveis)
+            </th>
+            <th>
+                
+            </th>
+            <th>Ações</th> @* Header para os botões de ação *@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Especialidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HorariosDisponiveis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Agendamentos)
+                </td>
+                <td>
+                    @* Links para ações (Editar, Detalhes, Deletar - Admin) *@
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Deletar</a> |
+
+                    @* Link para iniciar o fluxo de agendamento para este serviço *@
+                    <a asp-controller="Agendamento" asp-action="SelecionarHorario" asp-route-servicoId="@item.Id" class="btn btn-sm btn-primary">Agendar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
