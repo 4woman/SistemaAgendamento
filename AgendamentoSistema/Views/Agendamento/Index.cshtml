@@ -1,0 +1,65 @@
+@model IEnumerable<AgendamentoSistema.Models.Agendamento>
+
+@{ ViewData["Title"] = "Agenda de Agendamentos"; }
+
+<h1>@ViewData["Title"]</h1>
+
+@* Adicionar filtros se necessário (por data, profissional, etc.) *@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Data e Hora
+            </th>
+            <th>
+                Cliente
+            </th>
+            <th>
+                Serviço
+            </th>
+            <th>
+                Profissional
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Observações
+            </th>
+            @* Adicionar ações se necessário (ex: Cancelar Agendamento) *@
+            @* <th></th> *@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.DataHora.ToString("dd/MM/yyyy HH:mm")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Servico.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Profissional.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                 <td>
+                    @Html.DisplayFor(modelItem => item.Observacoes)
+                </td>
+                 <td> 
+                     <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> | 
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> | 
+                    <a asp-action="Delete" asp-route-id="@item.Id">Cancelar</a> 
+                 </td> 
+            </tr>
+        }
+    </tbody>
+</table>
+

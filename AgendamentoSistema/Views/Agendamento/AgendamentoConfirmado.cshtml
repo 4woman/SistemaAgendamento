@@ -1,0 +1,55 @@
+@model AgendamentoSistema.Models.Agendamento
+
+@{ ViewData["Title"] = "Agendamento Confirmado"; }
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="alert alert-success" role="alert">
+    Seu agendamento foi confirmado com sucesso!
+</div>
+
+<h4>Detalhes do Agendamento:</h4>
+<hr />
+<dl class="row">
+    <dt class="col-sm-2">
+        Número do Agendamento
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Id)
+    </dd>
+    <dt class="col-sm-2">
+        Cliente
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Cliente.Nome)
+    </dd>
+    <dt class="col-sm-2">
+        Serviço
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Servico.Nome)
+    </dd>
+    <dt class="col-sm-2">
+        Profissional
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Profissional.Nome)
+    </dd>
+    <dt class="col-sm-2">
+        Data e Hora
+    </dt>
+    <dd class="col-sm-10">
+        @Model.DataHora.ToString("dd/MM/yyyy HH:mm")
+    </dd>
+    <dt class="col-sm-2">
+        Status
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Status)
+    </dd>
+</dl>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Voltar para a Página Inicial</a>
+</div>
+

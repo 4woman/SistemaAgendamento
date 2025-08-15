@@ -1,0 +1,71 @@
+@model IEnumerable<AgendamentoSistema.Models.Horario>
+@{
+    ViewData["Title"] = "Selecionar Horário";
+    var servico = ViewBag.Servico as AgendamentoSistema.Models.Servico;
+}
+
+<h1>@ViewData["Title"] para @servico?.Nome</h1>
+
+<h4>Escolha um horário disponível:</h4>
+
+@if (TempData["ErroAgendamento"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErroAgendamento"]
+    </div>
+}
+
+
+@if (!Model.Any())
+{
+    <p>Não há horários disponíveis para este serviço no momento.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Data e Hora
+                </th>
+                <th>
+                    Profissional
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.DataHoraInicio.ToString("dd/MM/yyyy HH:mm")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Profissional.Nome)
+                    </td>
+                    <td>
+                        @* Link para confirmar o agendamento com este horário e profissional *@
+                        <a asp-controller="Profissionais"
+                           asp-action="Details"
+                           asp-route-id="@item.ProfissionalId"
+                           class="btn btn-link">@item.Profissional.Nome</a>
+                        @* Idealmente, aqui teríamos a etapa de Login/Cadastro antes de confirmar *@
+                        @* Por simplicidade, vamos direto para uma página de confirmação *@
+                        <a asp-action="ConfirmarAgendamento" 
+                           asp-route-servicoId="@servico.Id" 
+                           asp-route-horarioId="@item.Id" 
+                           asp-route-profissionalId="@item.ProfissionalId"
+                           class="btn btn-success">Selecionar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div>
+    <a asp-controller="Servicos" asp-action="Details" asp-route-id="@servico.Id">Voltar aos Detalhes do Serviço</a> |
+    <a asp-controller="Servicos" asp-action="Index">Voltar para Lista de Serviços</a>
+</div>
+

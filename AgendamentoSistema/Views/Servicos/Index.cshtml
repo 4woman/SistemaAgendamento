@@ -1,0 +1,59 @@
+@model IEnumerable<AgendamentoSistema.Models.Servico>
+
+@{ ViewData["Title"] = "Lista de Serviços"; }
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    @* Link para criar novo serviço (será usado pelo Admin) *@
+     <a asp-controller="Servicos" asp-action="Create" class="btn btn-success">Criar Novo Serviço</a> 
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                Duração (min)
+            </th>
+            <th>
+                Preço
+            </th>
+            <th>Ações</th> @* Header para os botões de ação *@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DuracaoMinutos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Preco)
+                </td>
+                <td>
+                    @* Links para ações (Editar, Detalhes, Deletar - Admin) *@
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Deletar</a> |
+                    
+                    @* Link para iniciar o fluxo de agendamento para este serviço *@
+                    <a asp-controller="Agendamento" asp-action="SelecionarHorario" asp-route-servicoId="@item.Id" class="btn btn-sm btn-primary">Agendar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

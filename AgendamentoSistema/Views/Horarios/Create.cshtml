@@ -1,0 +1,47 @@
+@model AgendamentoSistema.Models.Horario
+
+@{ ViewData["Title"] = "Adicionar Novo Horário"; }
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Horário Disponível</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="ProfissionalId" class="control-label">Profissional</label>
+                <select asp-for="ProfissionalId" class="form-control" asp-items="ViewBag.ProfissionalId">
+                    <option value="">-- Selecione um Profissional --</option>
+                </select>
+                <span asp-validation-for="ProfissionalId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="DataHoraInicio" class="control-label">Data e Hora de Início</label>
+                <input asp-for="DataHoraInicio" type="datetime-local" class="form-control" />
+                <span asp-validation-for="DataHoraInicio" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="DataHoraFim" class="control-label">Data e Hora de Fim</label>
+                <input asp-for="DataHoraFim" type="datetime-local" class="form-control" />
+                <span asp-validation-for="DataHoraFim" class="text-danger"></span>
+            </div>
+
+            @* O campo Disponivel é definido como true por padrão no Controller *@
+
+            <div class="form-group">
+                <input type="submit" value="Adicionar Horário" class="btn btn-primary" /> |
+                <a asp-action="Index">Voltar para a Lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

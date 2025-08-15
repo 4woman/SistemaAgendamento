@@ -1,0 +1,64 @@
+@model AgendamentoSistema.Models.Agendamento
+@{
+    ViewData["Title"] = "Confirmar Agendamento";
+    var horarioId = ViewBag.HorarioId;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Confirme os detalhes do seu agendamento:</h4>
+<hr />
+<dl class="row">
+    <dt class="col-sm-2">
+        Serviço
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Servico.Nome)
+    </dd>
+    <dt class="col-sm-2">
+        Profissional
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Profissional.Nome)
+    </dd>
+    <dt class="col-sm-2">
+        Data e Hora
+    </dt>
+    <dd class="col-sm-10">
+        @Model.DataHora.ToString("dd/MM/yyyy HH:mm")
+    </dd>
+    <dt class="col-sm-2">
+        Cliente
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Cliente.Nome) (ID: @Model.UsuarioId) @* Exibindo ID fixo por enquanto *@
+    </dd>
+     <dt class="col-sm-2">
+        Preço
+    </dt>
+    <dd class="col-sm-10">
+        @Model.Servico.Preco.ToString("C")
+    </dd>
+</dl>
+
+@if (TempData["ErroAgendamento"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErroAgendamento"]
+    </div>
+}
+
+<form asp-action="ConfirmarAgendamentoPost" method="post"> @* Changed asp-action to match the POST method name in controller *@
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="servicoId" value="@Model.ServicoId" />
+    <input type="hidden" name="profissionalId" value="@Model.ProfissionalId" />
+    <input type="hidden" name="horarioId" value="@horarioId" />
+    <input type="hidden" name="dataHora" value="@Model.DataHora" />
+    <input type="hidden" name="usuarioId" value="@Model.UsuarioId" /> @* ID Fixo 1 *@
+
+    <div class="form-group">
+        <input type="submit" value="Confirmar Agendamento" class="btn btn-primary" /> |
+        <a asp-action="SelecionarHorario" asp-route-servicoId="@Model.ServicoId">Cancelar e Voltar</a>
+    </div>
+</form>
+
