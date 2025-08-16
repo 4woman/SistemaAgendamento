@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SistemaAgendamento.Models;
 
 namespace AgendamentoSistema.Models
 {
-    public class Servico
+    public class Servico : BaseModel
     {
-        public int Id { get; set; }
+        
 
         [Required(ErrorMessage = "O nome do serviço é obrigatório.")]
         [StringLength(100, ErrorMessage = "O nome do serviço deve ter no máximo 100 caracteres.")]

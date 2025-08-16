@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SistemaAgendamento.Models;
 
 namespace AgendamentoSistema.Models
 {
-    public class Agendamento
+    public class Agendamento : BaseModel
     {
-        public int Id { get; set; }
+       
 
         [Required(ErrorMessage = "A data e hora do agendamento são obrigatórias.")]
         public DateTime DataHora { get; set; }
@@ -35,6 +36,6 @@ namespace AgendamentoSistema.Models
         public string? Observacoes { get; set; }
 
         // Status do agendamento (ex: Confirmado, Cancelado, Concluído)
-        public string Status { get; set; } = "Confirmado";
+        public StatusPedido Status { get; set; }
     }
 }

@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
+using SistemaAgendamento.Models;
 
 namespace AgendamentoSistema.Models
 {
-    public class Profissional
+    public class Profissional : BaseModel
     {
-        public int Id { get; set; }
+        
 
         [Required(ErrorMessage = "O nome do profissional é obrigatório.")]
         [StringLength(100, ErrorMessage = "O nome do profissional deve ter no máximo 100 caracteres.")]
