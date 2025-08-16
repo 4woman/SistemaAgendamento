@@ -1,10 +1,10 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using AgendamentoSistema.Models;
 
-namespace AgendamentoSistema.Models
+namespace SistemaAgendamento.Models
 {
-    public class Usuario
+    public class Usuario : BaseModel
     {
-        public int Id { get; set; }
 
         [Required(ErrorMessage = "O nome é obrigatório.")]
         [StringLength(100, ErrorMessage = "O nome deve ter no máximo 100 caracteres.")]
@@ -20,5 +20,6 @@ namespace AgendamentoSistema.Models
 
         // Relacionamento: Um usuário pode ter vários agendamentos
         public virtual ICollection<Agendamento>? Agendamentos { get; set; }
+
     }
 }

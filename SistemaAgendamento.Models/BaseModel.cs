@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgendamentoSistema.Models
+namespace SistemaAgendamento.Models
 {
-    public class Profissional
+    public class BaseModel
     {
     }
 }

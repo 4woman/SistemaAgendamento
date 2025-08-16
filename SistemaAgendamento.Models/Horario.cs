@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SistemaAgendamento.Models;
 
 namespace AgendamentoSistema.Models
 {
-    public class Horario
+    public class Horario : BaseModel
     {
-        public int Id { get; set; }
+        
 
         [Required(ErrorMessage = "A data e hora de início são obrigatórias.")]
         public DateTime DataHoraInicio { get; set; }

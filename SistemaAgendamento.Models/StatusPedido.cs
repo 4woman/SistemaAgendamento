@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgendamentoSistema.Models
+namespace SistemaAgendamento.Models
 {
-    public class BaseModel
+    public enum StatusPedido
     {
+        Confirmado,
+        Cancelado,
+        Concluido
     }
 }
