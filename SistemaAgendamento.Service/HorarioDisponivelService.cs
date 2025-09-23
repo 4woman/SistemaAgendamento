@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SistemaAgendamento.Models
+namespace SistemaAgendamento.Service
 {
-    public class BaseModel
+    internal class HorarioDisponivelService
     {
-        public int Id { get; set; }
-
-       
     }
 }

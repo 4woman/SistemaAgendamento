@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AgendamentoSistema.Models;
 
-namespace SistemaAgendamento.Models
+namespace SistemaAgendamento.Service
 {
-    public class BaseModel
+    public class ProfissionalService : BaseService<Profissional>
     {
-        public int Id { get; set; }
-
-       
     }
 }
