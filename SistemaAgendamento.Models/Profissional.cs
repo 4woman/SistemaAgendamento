@@ -8,9 +8,9 @@ namespace AgendamentoSistema.Models
 
         public string Nome { get; set; } = string.Empty;
 
-        public ICollection<ServicoProfissional> ServicoProfissionals { get; set; }
-        public ICollection<HorarioDisponivel> Horarios { get; set; }
-        public ICollection<Agendamento> Agendamentos { get; set; }
+       public ICollection<ServicoProfissional> ServicoProfissionals { get; set; }
+       public ICollection<HorarioDisponivel> Horarios { get; set; }
+       public ICollection<Agendamento> Agendamentos { get; set; }
 
 
 

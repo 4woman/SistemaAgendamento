@@ -1,6 +1,6 @@
 ﻿namespace SistemaAgendamento.Service
 {
-    public interface IServive<T>
+    public interface IService<T>
     {
         int Cadastrar(T model);
         bool Editar(T model);

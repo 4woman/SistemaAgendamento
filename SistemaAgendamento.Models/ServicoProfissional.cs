@@ -7,12 +7,12 @@ using AgendamentoSistema.Models;
 
 namespace SistemaAgendamento.Models
 {
-    public class ServicoProfissional
+    public class ServicoProfissional: BaseModel
     {
         public int ServicoId { get; set; }
         public Servico Servico { get; set; }
 
-        public int ProfissionalId { get; set; }
-        public Profissional Profissional { get; set; }
+       public int ProfissionalId { get; set; }
+       public Profissional Profissional { get; set; }
     }
 }

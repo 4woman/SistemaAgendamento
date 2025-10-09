@@ -10,11 +10,12 @@ namespace AgendamentoSistema.Models
 
        
         public string NomeServico { get; set; }
-        public string Descricao { get; set; } 
-        public int DuracaoMinutos { get; set; }
+        public string Descricao { get; set; }
+        public TimeSpan DuracaoMinutos { get; set; }
+
         public decimal Preco { get; set; }
 
-        public ICollection<ServicoProfissional> Profissionais { get; set; }
-        public ICollection<Agendamento> Agendamentos { get; set; }
+       public ICollection<ServicoProfissional> Profissionais { get; set; }
+       public ICollection<Agendamento> Agendamentos { get; set; }
     }
 }
